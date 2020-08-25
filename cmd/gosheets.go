@@ -11,8 +11,6 @@ const (
 	_clientSecretPath = "client_secret.json"
 )
 
-// go run cmd/gosheets.go -s 10j3vs-LmZcLSlygaEmunjvSZbysj5oFcNtEfNpTp9ZQ -method read
-
 func main() {
 	cli, err := parser.NewCLI(_clientSecretPath)
 	if err != nil {
@@ -23,8 +21,11 @@ func main() {
 
 	switch method {
 	case "read":
+		fmt.Println("Reading spreadsheet contents.")
 		cli.ReadSpreadsheet(spreadsheetID, false)
 	case "update":
+		fmt.Println("Updating spreadsheet contents.")
+		//TODO implement actual update with command-line input
 		cellUpdate := parser.ContentUpdate{
 			Row:        2,
 			Column:     2,
@@ -33,7 +34,7 @@ func main() {
 		}
 		cli.UpdateSpreadsheet(spreadsheetID, cellUpdate)
 	case "convert":
-		fmt.Println("Converting spreadsheet contents to JSON file.")
+		fmt.Println("Converting spreadsheet to JSON file.")
 		cli.ReadSpreadsheet(spreadsheetID, true)
 	default:
 		fmt.Printf("%s.\n", method)
