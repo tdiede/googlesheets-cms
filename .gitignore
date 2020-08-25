@@ -2,3 +2,9 @@ client_secret.json
 
 go.mod
 go.sum
+
+.DS_Store
+
+gosheets
+
+data*.json
